@@ -1,2 +1,2 @@
 # the-unnamed-math-game-py
-flask/ajax implementation of the unnamed math game
+Flask/Ajax implementation of The Unnamed Math Game
