@@ -7,14 +7,15 @@ colored belt modes represent karate belts
 Functions:
   [X] handle_operation
   [X] init_numbers
-  [] init_white_belt
-  [] init_green_belt
-  [] init_red_belt
-  [] init_black_belt
+  [X] init_white_belt
+  [X] init_green_belt
+  [X] init_red_belt
+  [X] init_black_belt
+  [X] generate_ans
   [] solve_board
   [] request_hint
 """
-from random import shuffle
+from random import shuffle, choice
 import operator
 import game_board
 
@@ -90,6 +91,12 @@ def init_green_belt():
             all subtraction operation on columns
     '''
     numbers = init_numbers()
+    for rowop in rowops:
+        rowop = '+'
+    for colop in colops:
+        colop = '-'
+    ans = generate_ans(ans_dict, numbers)
+    return game_board(rowops,colops,ans)
 
 def init_red_belt():
     '''
@@ -102,6 +109,12 @@ def init_red_belt():
             all multiplication operations on columns
     '''
     numbers = init_numbers()
+    for rowop in rowops:
+        rowop = '+'
+    for colop in colops:
+        colop = '*'
+    ans = generate_ans(ans_dict, numbers)
+    return game_board(rowops,colops,ans)
 
 def init_black_belt():
     '''
@@ -113,6 +126,12 @@ def init_black_belt():
             Randomized operations all around
     '''
     numbers = init_numbers()
+    for rowop in rowops:
+        rowop = choice(['+', '-'])
+    for colop in colops:
+        colop = choice(['*', '/'])
+    ans = generate_ans(ans_dict, numbers)
+    return game_board(rowops,colops,ans)
 
 def generate_ans(ans, numbers):
     '''
