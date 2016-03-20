@@ -16,6 +16,7 @@ Functions:
 """
 from random import shuffle
 import operator
+import game_board
 
 rowops = {
     'row1op1': '', 'row1op2': '',
@@ -29,7 +30,7 @@ colops = {
     'col3op1': '', 'col3op2': ''
 }
 
-ans = {
+ans_dict = {
     'row1ans': '', 'row2ans': '', 'row3ans': '',
     'col1ans': '', 'col2ans': '', 'col3ans': ''
 }
@@ -71,6 +72,12 @@ def init_white_belt():
             all addition operations
     '''
     numbers = init_numbers()
+    for rowop in rowops:
+        rowop = '+'
+    for colop in colops:
+        colop = '+'
+    ans = generate_ans(ans_dict, numbers)
+    return game_board(rowops,colops,ans)
 
 def init_green_belt():
     '''
@@ -106,6 +113,45 @@ def init_black_belt():
             Randomized operations all around
     '''
     numbers = init_numbers()
+
+def generate_ans(ans, numbers):
+    '''
+    arguments:
+        ans: empty answer dictionary
+    return:
+        answer dictionary
+    '''
+    #row1ans - numbers 0,1,2 with row1op1, row1op2
+    row1op1 = handle_operation(rowops['row1op1'])
+    row1op2 = handle_operation(rowops['row1op2'])
+    ans['row1ans'] = row1op2(row1op1(numbers[0],numbers[1]),numbers[3])
+
+    #row2ans - numbers 3,4,5 with row2op1, row2op2
+    row2op1 = handle_operation(rowops['row2op1'])
+    row2op2 = handle_operation(rowops['row2op2'])
+    ans['row2ans'] = row2op2(row2op1(numbers[3],numbers[4]),numbers[5])
+
+    #row3ans - numbers 6,7,8 with row3op1, row3op2
+    row3op1 = handle_operation(rowops['row3op1'])
+    row3op2 = handle_operation(rowops['row3op2'])
+    ans['row3ans'] = row3op2(row3op1(numbers[6],numbers[7]),numbers[8])
+
+    #col1ans - numbers 0,3,6 with col1op1, col1op2
+    col1op1 = handle_operation(colops['col1op1'])
+    col1op2 = handle_operation(colops['col1op2'])
+    ans['col1ans'] = col1op2(col1op1(numbers[0],numbers[3]),numbers[6])
+
+    #col2ans - numbers 1,4,7 with col2op1, col2op2
+    col2op1 = handle_operation(colops['col2op1'])
+    col2op2 = handle_operation(colops['col2op2'])
+    ans['col2ans'] = col2op2(col2op1(numbers[1],numbers[4]),numbers[7])
+
+    #col3ans - numbers 2,5,8 with col3op1, col3op2
+    col3op1 = handle_operation(colops['col3op1'])
+    col3op2 = handle_operation(colops['col3op2'])
+    ans['col3ans'] = col3op2(col3op1(numbers[2],numbers[5]),numbers[8])
+
+    return ans
 
 def solve_board():
     '''
