@@ -103,7 +103,7 @@ if __name__ == "__main__":
     test_handle_operations()
 
     #init_numbers
-    test_init_numbers()
+    test_shuffle_numbers()
 
     #init_white_belt
     test_init_white_belt()
