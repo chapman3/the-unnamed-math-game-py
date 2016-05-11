@@ -17,7 +17,7 @@ Functions:
 """
 from random import shuffle, choice
 import operator
-import game_board
+from game_board import Game_Board
 
 rowops = {
     'row1op1': '', 'row1op2': '',
@@ -40,8 +40,10 @@ ops = {
     '+' : operator.add,
     '-' : operator.sub,
     '*' : operator.mul,
-    '/' : operator.div
+    '/' : operator.truediv
 }
+
+nums = [(i+1) for i in range(9)]
 
 def handle_operation(op):
     '''
@@ -53,15 +55,14 @@ def handle_operation(op):
     '''
     return ops[op]
 
-def init_numbers():
+def shuffle_numbers(numbers):
     '''
     arguments:
         none
     return:
         shuffled list of numbers 1-9
     '''
-    numbers = [[i+1] for i in range(9)]
-    numbers = shuffle(numbers)
+    shuffle(numbers)
     return numbers
 
 def init_white_belt():
@@ -72,13 +73,13 @@ def init_white_belt():
         easiest game mode starting game board
             all addition operations
     '''
-    numbers = init_numbers()
+    numbers = shuffle_numbers(nums)
     for rowop in rowops:
-        rowop = '+'
+        rowops[rowop] = '+'
     for colop in colops:
-        colop = '+'
+        colops[colop] = '+'
     ans = generate_ans(ans_dict, numbers)
-    return game_board(rowops,colops,ans)
+    return Game_Board(rowops,colops,numbers,ans)
 
 def init_green_belt():
     '''
@@ -90,13 +91,13 @@ def init_green_belt():
             all addition operations on rows
             all subtraction operation on columns
     '''
-    numbers = init_numbers()
+    numbers = shuffle_numbers(nums)
     for rowop in rowops:
-        rowop = '+'
+        rowops[rowop] = '+'
     for colop in colops:
-        colop = '-'
+        colops[colop] = '-'
     ans = generate_ans(ans_dict, numbers)
-    return game_board(rowops,colops,ans)
+    return Game_Board(rowops,colops,numbers,ans)
 
 def init_red_belt():
     '''
@@ -108,13 +109,13 @@ def init_red_belt():
             all addition operations on rows
             all multiplication operations on columns
     '''
-    numbers = init_numbers()
+    numbers = shuffle_numbers(nums)
     for rowop in rowops:
-        rowop = '+'
+        rowops[rowop] = '+'
     for colop in colops:
-        colop = '*'
+        colops[colop] = '*'
     ans = generate_ans(ans_dict, numbers)
-    return game_board(rowops,colops,ans)
+    return Game_Board(rowops,colops,numbers,ans)
 
 def init_black_belt():
     '''
@@ -125,13 +126,13 @@ def init_black_belt():
             ##SUBJECT TO CHANGE##
             Randomized operations all around
     '''
-    numbers = init_numbers()
+    numbers = shuffle_numbers(nums)
     for rowop in rowops:
-        rowop = choice(['+', '-'])
+        rowops[rowop] = choice(['+', '-'])
     for colop in colops:
-        colop = choice(['*', '/'])
+        colops[colop] = choice(['*', '/'])
     ans = generate_ans(ans_dict, numbers)
-    return game_board(rowops,colops,ans)
+    return Game_Board(rowops,colops,numbers,ans)
 
 def generate_ans(ans, numbers):
     '''
@@ -143,7 +144,7 @@ def generate_ans(ans, numbers):
     #row1ans - numbers 0,1,2 with row1op1, row1op2
     row1op1 = handle_operation(rowops['row1op1'])
     row1op2 = handle_operation(rowops['row1op2'])
-    ans['row1ans'] = row1op2(row1op1(numbers[0],numbers[1]),numbers[3])
+    ans['row1ans'] = row1op2(row1op1(numbers[0],numbers[1]),numbers[2])
 
     #row2ans - numbers 3,4,5 with row2op1, row2op2
     row2op1 = handle_operation(rowops['row2op1'])
