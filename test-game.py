@@ -27,8 +27,8 @@ def test_handle_operations():
     print(game.handle_operation('/'))
     print("==================================")
 
-def test_init_numbers():
-    print("===== Testing:  init_numbers =====")
+def test_shuffle_numbers():
+    print("===== Testing:  shuffle_numbers =====")
     print("Expecting randomized series of numbers 1-9")
     print(game.shuffle_numbers(game.nums))
     print("==================================")
