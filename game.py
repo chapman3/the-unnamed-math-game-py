@@ -12,7 +12,7 @@ Functions:
   [X] init_red_belt
   [X] init_black_belt
   [X] generate_ans
-  [] solve_board
+  [X] check_solution
   [] request_hint
 """
 from random import shuffle, choice
@@ -32,6 +32,11 @@ colops = {
 }
 
 ans_dict = {
+    'row1ans': '', 'row2ans': '', 'row3ans': '',
+    'col1ans': '', 'col2ans': '', 'col3ans': ''
+}
+
+input_ans_dict = {
     'row1ans': '', 'row2ans': '', 'row3ans': '',
     'col1ans': '', 'col2ans': '', 'col3ans': ''
 }
@@ -173,14 +178,17 @@ def generate_ans(ans, numbers):
 
     return ans
 
-def solve_board():
+def check_solution(user_input, ans):
     '''
     arguments:
-        none
+        user_input: user input solution to game board
+        ans: ans dict already generated on game initialization
     return:
-        solution to game board (updates ans properties)
+        true if user input is a valid solution
+        false otherwise
     '''
-    return
+    inputAns = generate_ans(input_ans_dict, user_input)
+    return inputAns == ans
 
 def request_hint():
     '''

@@ -85,8 +85,8 @@ def test_generate_ans():
     print("==================================")
     return
 
-def test_solve_board():
-    print('====== Testing: solve_board ======')
+def test_check_solution():
+    print('====== Testing: check_solution ======')
     print("==================================")
     return
 
@@ -100,25 +100,28 @@ if __name__ == "__main__":
     print("==================================")
 
     #handle_operations
-    test_handle_operations()
+    #test_handle_operations()
 
     #init_numbers
-    test_shuffle_numbers()
+    #test_shuffle_numbers()
 
     #init_white_belt
-    test_init_white_belt()
+    #test_init_white_belt()
 
     #init_green_belt
-    test_init_green_belt()
+    #test_init_green_belt()
 
     #init_red_belt
-    test_init_red_belt()
+    #test_init_red_belt()
 
     #init_black_belt
-    test_init_black_belt()
+    #test_init_black_belt()
 
     #generate_ans
     #test_generate_ans()
+
+    #check_solution
+    #test_check_solution()
 
     #request_hint
     #test_request_hint()
