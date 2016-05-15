@@ -8,15 +8,15 @@ if __name__ == "__main__":
     print(new_game_board.ans)
     print(new_game_board.nums)
     input_list = [None]*9
-    input1 = input("What's R1C1?")
-    input2 = input("What's R1C2?")
-    input3 = input("What's R1C3?")
-    input4 = input("What's R2C1?")
-    input5 = input("What's R2C2?")
-    input6 = input("What's R2C3?")
-    input7 = input("What's R3C1?")
-    input8 = input("What's R3C2?")
-    input9 = input("What's R3C3?")
+    input1 = int(input("What's R1C1?"))
+    input2 = int(input("What's R1C2?"))
+    input3 = int(input("What's R1C3?"))
+    input4 = int(input("What's R2C1?"))
+    input5 = int(input("What's R2C2?"))
+    input6 = int(input("What's R2C3?"))
+    input7 = int(input("What's R3C1?"))
+    input8 = int(input("What's R3C2?"))
+    input9 = int(input("What's R3C3?"))
     input_list[0] = input1
     input_list[1] = input2
     input_list[2] = input3
